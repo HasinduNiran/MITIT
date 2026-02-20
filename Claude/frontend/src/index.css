@@ -1,0 +1,64 @@
+/* src/index.css
+   Base styles + Tailwind directives.
+   The @tailwind directives are replaced by Tailwind's generated CSS at build time. */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Apply Inter as the default font across the entire app */
+@layer base {
+  * {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  body {
+    @apply bg-slate-50 text-slate-900 antialiased;
+  }
+}
+
+/* Reusable component classes using Tailwind's @layer components */
+@layer components {
+  /* Primary button — blue/indigo gradient consistent with Auth0/Firebase style */
+  .btn-primary {
+    @apply w-full flex justify-center items-center gap-2
+           bg-gradient-to-r from-blue-600 to-indigo-600
+           hover:from-blue-700 hover:to-indigo-700
+           text-white font-semibold py-3 px-6 rounded-xl
+           transition-all duration-200 ease-in-out
+           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+           disabled:opacity-60 disabled:cursor-not-allowed
+           shadow-md hover:shadow-lg;
+  }
+
+  /* Standard form input field */
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl border border-slate-200
+           bg-white text-slate-900 placeholder-slate-400
+           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
+           transition-all duration-200;
+  }
+
+  /* Input field in error state */
+  .input-error {
+    @apply border-red-400 focus:ring-red-400;
+  }
+
+  /* Auth card container */
+  .auth-card {
+    @apply bg-white rounded-2xl shadow-xl border border-slate-100 p-8 w-full max-w-md
+           animate-slideUp;
+  }
+}
+
+/* Custom scrollbar for modern browsers */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
